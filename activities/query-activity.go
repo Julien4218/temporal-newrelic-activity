@@ -13,6 +13,7 @@ import (
 
 func QueryNrql(ctx context.Context, param string) (string, error) {
 	instrumentation.Log("QueryNrql")
+
 	_, err := newrelic.New(newrelic.ConfigPersonalAPIKey(os.Getenv("NEW_RELIC_API_KEY")))
 	if err != nil {
 		message := fmt.Sprintf("error initializing client:%s", err.Error())
