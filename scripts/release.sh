@@ -84,3 +84,4 @@ ${SPELL_CMD} -source text -w ${RELEASE_NOTES_FILE}
 
 # Publish the release
 ${REL_CMD} release --release-notes=${RELEASE_NOTES_FILE}
+
