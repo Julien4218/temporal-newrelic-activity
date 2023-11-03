@@ -1,0 +1,11 @@
+tmp/*
+bin/*
+dist/*
+coverage/*
+vendor/*
+schema.json
+*.csv
+.env
+.vscode/
+.DS_Store
+.idea
