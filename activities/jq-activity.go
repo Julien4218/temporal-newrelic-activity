@@ -55,7 +55,7 @@ func JQ(ctx context.Context, input JqInput) ([]string, error) {
 			return []string{}, errors.New(message)
 		}
 
-		result = append(result, fmt.Sprintf("%s", vj))
+		result = append(result, string(vj))
 	}
 
 	return result, nil

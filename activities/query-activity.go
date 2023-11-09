@@ -45,7 +45,7 @@ func QueryNrql(ctx context.Context, input QueryNrqlInput) (string, error) {
 		return "", errors.New(message)
 	}
 	if result == nil {
-		instrumentation.Log(fmt.Sprintf("Got no results"))
+		instrumentation.Log("Got no results")
 		return "", nil
 	}
 	instrumentation.Log(fmt.Sprintf("Got %d current results", len(result.Results)))
