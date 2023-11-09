@@ -2,6 +2,7 @@ package activities
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"os"
@@ -38,11 +39,17 @@ func QueryNrql(ctx context.Context, input QueryNrqlInput) (string, error) {
 	instrumentation.Log("NewRelic endpoints are good")
 	instrumentation.Log(fmt.Sprintf("Querying on accountID:%d with:%s", input.AccountID, nrdb.NRQL(input.Query)))
 	result, err := client.Nrdb.Query(input.AccountID, nrdb.NRQL(input.Query))
+	instrumentation.Log(fmt.Sprintf("Got %d current results", len(result.Results)))
 	if err != nil {
 		message := fmt.Sprintf("error while querying NRQL detail:%s", err.Error())
 		instrumentation.Log(message)
 		return "", errors.New(message)
 	}
-	instrumentation.Log(fmt.Sprintf("Got %d current results", len(result.CurrentResults)))
-	return "OK", nil
+	json, err := json.Marshal(result.Results)
+	if err != nil {
+		message := fmt.Sprintf("error while serializing results detail:%s", err.Error())
+		instrumentation.Log(message)
+		return "", errors.New(message)
+	}
+	return string(json), nil
 }
