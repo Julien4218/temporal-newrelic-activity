@@ -6,8 +6,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/Julien4218/temporal-newrelic-activity/instrumentation"
 	"github.com/itchyny/gojq"
+
+	"github.com/Julien4218/temporal-newrelic-activity/instrumentation"
 )
 
 type JqInput struct {
