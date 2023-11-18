@@ -31,7 +31,8 @@ func NewNewRelicActivityContextWith(eventsService events.EventsAPI) *NewRelicAct
 func (c *NewRelicActivityContext) GetEventsService() (events.EventsAPI, error) {
 	if c.eventsService == nil {
 		service, err := events.NewEventsService(
-			config.ConfigPersonalAPIKey(os.Getenv("NEW_RELIC_API_KEY")),
+			config.ConfigInsightsInsertKey(os.Getenv("NEW_RELIC_INSIGHTS_INSERT_KEY")),
+			// config.ConfigPersonalAPIKey(os.Getenv("NEW_RELIC_API_KEY")),
 			config.ConfigRegion(os.Getenv("NEW_RELIC_REGION")),
 		)
 		if err != nil {
